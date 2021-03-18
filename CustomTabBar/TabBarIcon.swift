@@ -9,16 +9,25 @@ import SwiftUI
 
 struct TabBarIcon: View {
     
+    // MARK: - PROPERTIES
+    @StateObject var viewRouter: ViewRouter
+    let assignedPage: Page
+    
     let width, height: CGFloat
     let systemIconName, tabName: String
     
-    init(width: CGFloat, height: CGFloat, systemIconName: String, tabName: String) {
+    // MARK: - INITIALIZER
+    init(viewRouter: StateObject<ViewRouter>, assignedPage: Page, width: CGFloat, height: CGFloat, systemIconName: String, tabName: String) {
+        _viewRouter = viewRouter
+        self.assignedPage = assignedPage
         self.width = width
         self.height = height
         self.systemIconName = systemIconName
         self.tabName = tabName
     }
     
+    
+    // MARK: - BODY
     var body: some View {
         VStack {
             Image(systemName: systemIconName)
@@ -33,10 +42,3 @@ struct TabBarIcon: View {
         .padding(.horizontal, -4)
     }
 }
-
-//struct TabBarIcon_Previews: PreviewProvider {
-//    //static var width: CGFloat geometry
-//    static var previews: some View {
-//        TabBarIcon(width: CGFloat, height: <#CGFloat#>, systemIconName: <#String#>, tabName: <#String#>)
-//    }
-//}
